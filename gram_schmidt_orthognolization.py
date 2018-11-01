@@ -28,20 +28,43 @@ if (args.mode == 'classical'):
     print('u2: [%f %f %f]' % (u2[0], u2[1], u2[2]))
     print('u3: [%f %f %f]' % (u3[0], u3[1], u3[2]))
 
+    print('<u1,u2> : '),
+    print(numpy.dot(numpy.transpose(u1), u2))
+
+    print('<u2,u3> : '),
+    print (numpy.dot(numpy.transpose(u2), u3))
+
+    print('<u1,u3> :'),
+    print(numpy.dot(numpy.transpose(u1), u3))
+
 elif (args.mode == 'modified'):
     for k in range(3):
         if (k==0):
-            print (k)
+            # print (k)
             u[str(k+1)] = x[str(k+1)]/numpy.linalg.norm(x[str(k+1)], ord=2)
+            print 'u'+str(k+1)+':',
             print(u[str(k+1)])
             for i in range(3-k-1):
                 u[str(i+1+k+1)] = x[str(i+1+k+1)]
+                # print(u[str(i+1+k+1)])
 
         else:
-            for i in range(3 - k - 1):
-                u[str(i + 1 + k + 1)] = u[str(i + 1 + k + 1)] - numpy.dot(numpy.transpose(u[str(i+1+k)]), u[str(i+1+k+1)])*u[str(i+1+k)]
+            for i in range(3 - k ):
+                # print(max(0, i-1))
+                # print(k)
+                u[str(i + 1 + k )] = u[str(i + 1 + k )] - numpy.dot(numpy.transpose(u[str(max(0, i-1)+k)]), u[str(i+k+1)])*u[str(max(0, i-1)+k)]
             u[str(k+1)] = u[str(k+1)]/numpy.linalg.norm(u[(str(k+1))], ord=2)
+            print 'u'+str(k+1)+':',
             print(u[str(k+1)])
+
+    print('<u1,u2> : '),
+    print(numpy.dot(numpy.transpose(u['1']), u['2']))
+
+    print('<u2,u3> : '),
+    print (numpy.dot(numpy.transpose(u['2']), u['3']))
+
+    print('<u1,u3> :'),
+    print(numpy.dot(numpy.transpose(u['1']), u['3']))
 
 
 
