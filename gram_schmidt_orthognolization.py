@@ -28,6 +28,8 @@ if (args.mode == 'classical'):
     print('u2: [%f %f %f]' % (u2[0], u2[1], u2[2]))
     print('u3: [%f %f %f]' % (u3[0], u3[1], u3[2]))
 
+    print(' ')
+
     print('<u1,u2> : '),
     print(numpy.dot(numpy.transpose(u1), u2))
 
@@ -56,7 +58,7 @@ elif (args.mode == 'modified'):
             u[str(k+1)] = u[str(k+1)]/numpy.linalg.norm(u[(str(k+1))], ord=2)
             print 'u'+str(k+1)+':',
             print(u[str(k+1)])
-
+    print(' ')
     print('<u1,u2> : '),
     print(numpy.dot(numpy.transpose(u['1']), u['2']))
 
